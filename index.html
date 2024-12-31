@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Budget Tracker</title>
     <link rel="stylesheet" href="styles/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <header>
@@ -31,40 +32,46 @@
           <button type="submit">Add</button>
         </form>
       </section>
-      <section id="list-section">
-        <h2>Transaction List</h2>
-        <div id="filter-options">
-          <input type="text" id="search-keyword" placeholder="Search..." />
-          <select id="filter-category">
-            <option value="all">All</option>
-            <option value="income">Income</option>
-            <option value="food">Food</option>
-            <option value="transport">Transport</option>
-            <option value="entertainment">Entertainment</option>
-          </select>
-          <input type="date" id="filter-start-date" />
-          <input type="date" id="filter-end-date" />
+
+      <!-- Wrapper for Transaction List and Chart -->
+      <section id="main-content">
+        <div id="list-section">
+          <h2>Transaction List</h2>
+          <div id="filter-options">
+            <input type="text" id="search-keyword" placeholder="Search..." />
+            <select id="filter-category">
+              <option value="all">All</option>
+              <option value="income">Income</option>
+              <option value="food">Food</option>
+              <option value="transport">Transport</option>
+              <option value="entertainment">Entertainment</option>
+            </select>
+            <input type="date" id="filter-start-date" />
+            <input type="date" id="filter-end-date" />
+          </div>
+          <table id="transaction-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
         </div>
-        <table id="transaction-table">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Description</th>
-              <th>Category</th>
-              <th>Amount</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </section>
-      <section id="chart-section">
-        <h2>Expense Breakdown</h2>
-        <canvas id="expense-chart"></canvas>
+
+        <!-- Expense Breakdown Chart -->
+        <div id="chart-section">
+          <h2>Expense Breakdown</h2>
+          <canvas id="expense-chart"></canvas>
+        </div>
       </section>
     </main>
-    <script src="js/chart.js"></script>
     <script src="js/storage.js"></script>
+    <script src="js/chart.js"></script>
     <script src="js/app.js"></script>
   </body>
 </html>

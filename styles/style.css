@@ -13,7 +13,7 @@ header {
 }
 
 main {
-  max-width: 900px;
+  max-width: 1200px;
   margin: auto;
   padding: 1rem;
 }
@@ -31,6 +31,24 @@ form button {
   padding: 0.5rem;
 }
 
+#main-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+#list-section,
+#chart-section {
+  flex: 1 1 45%;
+}
+
+#filter-options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -41,6 +59,40 @@ table th,
 table td {
   border: 1px solid #ddd;
   padding: 0.5rem;
+}
+
+button.delete-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+button.delete-btn:hover {
+  background-color: darkred;
+}
+
+#chart-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  height: 300px !important;
+  width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  #main-content {
+    flex-direction: column;
+  }
+
+  #list-section,
+  #chart-section {
+    flex: 1 1 100%;
+  }
 }
 
 @media (max-width: 600px) {
