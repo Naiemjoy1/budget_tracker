@@ -3,10 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/style.css" />
     <title>Budget Tracker</title>
+    <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
-    <p>Personal Budget Tracker</p>
+    <header>
+      <h1>Personal Budget Tracker</h1>
+    </header>
+    <main>
+      <section id="form-section">
+        <h2>Add Transaction</h2>
+        <form id="transaction-form">
+          <input
+            type="text"
+            id="description"
+            placeholder="Description"
+            required
+          />
+          <input type="number" id="amount" placeholder="Amount" required />
+          <select id="category">
+            <option value="income">Income</option>
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="entertainment">Entertainment</option>
+          </select>
+          <input type="date" id="date" required />
+          <button type="submit">Add</button>
+        </form>
+      </section>
+      <section id="list-section">
+        <h2>Transaction List</h2>
+        <div id="filter-options">
+          <input type="text" id="search-keyword" placeholder="Search..." />
+          <select id="filter-category">
+            <option value="all">All</option>
+            <option value="income">Income</option>
+            <option value="food">Food</option>
+            <option value="transport">Transport</option>
+            <option value="entertainment">Entertainment</option>
+          </select>
+          <input type="date" id="filter-start-date" />
+          <input type="date" id="filter-end-date" />
+        </div>
+        <table id="transaction-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Amount</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+      <section id="chart-section">
+        <h2>Expense Breakdown</h2>
+        <canvas id="expense-chart"></canvas>
+      </section>
+    </main>
+    <script src="js/chart.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
