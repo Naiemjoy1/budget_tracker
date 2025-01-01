@@ -2,10 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const transactions = Storage.getData('transactions');
   const form = document.getElementById('transaction-form');
   const tableBody = document.querySelector('#transaction-table tbody');
+  const searchKeyword = document.getElementById('search-keyword');
+  const filterCategory = document.getElementById('filter-category');
+  const filterStartDate = document.getElementById('filter-start-date');
+  const filterEndDate = document.getElementById('filter-end-date');
 
-  const renderTable = () => {
+  const filterAndSearch = () => {
+    const keyword = searchKeyword.value.toLowerCase();
+    const category = filterCategory.value;
+    const startDate = filterStartDate.value;
+    const endDate = filterEndDate.value;
+
+    const filteredTransactions = transactions.filter(t => {
+      const matchesKeyword = t.description.toLowerCase().includes(keyword);
+      const matchesCategory = category === 'all' || t.category === category;
+      const matchesDate = (!startDate || new Date(t.date) >= new Date(startDate)) &&
+                          (!endDate || new Date(t.date) <= new Date(endDate));
+
+      return matchesKeyword && matchesCategory && matchesDate;
+    });
+
+    renderTable(filteredTransactions);
+    renderChart(filteredTransactions);
+  };
+
+  const renderTable = (data) => {
     tableBody.innerHTML = '';
-    transactions.forEach((t, index) => {
+    data.forEach((t, index) => {
       const row = document.createElement('tr');
       row.innerHTML = `
         <td>${t.date}</td>
@@ -18,11 +41,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const renderChart = () => {
+  const renderChart = (data) => {
     const ctx = document.getElementById('expense-chart').getContext('2d');
-    const categories = [...new Set(transactions.map(t => t.category))];
-    const data = categories.map(cat => {
-      return transactions
+    const categories = [...new Set(data.map(t => t.category))];
+    const chartData = categories.map(cat => {
+      return data
         .filter(t => t.category === cat)
         .reduce((sum, t) => sum + t.amount, 0);
     });
@@ -33,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         labels: categories,
         datasets: [{
           label: 'Expenses by Category',
-          data,
+          data: chartData,
           backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50']
         }]
       }
@@ -49,10 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     transactions.push({ description, amount, category, date });
     Storage.saveData('transactions', transactions);
-    
-    renderTable();
-    renderChart();
 
+    filterAndSearch();
     form.reset();
   });
 
@@ -62,11 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
       transactions.splice(index, 1);
       Storage.saveData('transactions', transactions);
 
-      renderTable();
-      renderChart();
+      filterAndSearch();
     }
   });
 
-  renderTable();
-  renderChart();
+  searchKeyword.addEventListener('input', filterAndSearch);
+  filterCategory.addEventListener('change', filterAndSearch);
+  filterStartDate.addEventListener('change', filterAndSearch);
+  filterEndDate.addEventListener('change', filterAndSearch);
+
+  filterAndSearch();
 });
