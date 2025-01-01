@@ -10,6 +10,8 @@
   <body>
     <header>
       <h1>Personal Budget Tracker</h1>
+      <button class="toggle-button">Dark Mode</button>
+      <button class="export-button">Export Data as CSV</button>
     </header>
     <main>
       <section id="form-section">
@@ -33,7 +35,6 @@
         </form>
       </section>
 
-      <!-- Wrapper for Transaction List and Chart -->
       <section id="main-content">
         <div id="list-section">
           <h2>Transaction List</h2>
@@ -56,14 +57,12 @@
                 <th>Description</th>
                 <th>Category</th>
                 <th>Amount</th>
-                <th>Actions</th>
               </tr>
             </thead>
             <tbody></tbody>
           </table>
         </div>
 
-        <!-- Expense Breakdown Chart -->
         <div id="chart-section">
           <h2>Expense Breakdown</h2>
           <canvas id="expense-chart"></canvas>
@@ -73,5 +72,9 @@
     <script src="js/storage.js"></script>
     <script src="js/chart.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/toggle.js"></script>
+    <script src="js/csv..js"></script>
+
+    <script></script>
   </body>
 </html>

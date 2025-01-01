@@ -102,3 +102,26 @@ canvas {
     width: 100%;
   }
 }
+
+/* Dark Mode Styles */
+body[data-theme="dark"] {
+  background-color: #121212;
+  color: white;
+}
+
+body[data-theme="dark"] header {
+  background-color: #333;
+}
+
+body[data-theme="dark"] table {
+  border: 1px solid #555;
+}
+
+body[data-theme="dark"] button {
+  background-color: #555;
+  color: white;
+}
+
+body[data-theme="dark"] .toggle-button {
+  background-color: #888;
+}
