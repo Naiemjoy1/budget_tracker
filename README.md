@@ -24,11 +24,14 @@ A simple personal budget tracker that allows users to add transactions, filter a
 
 ```
 /project-root
-├── /css
+├── /styles
 │   └── style.css
 ├── /js
 │   ├── app.js
 │   ├── chart.js
+│   ├── csv.js
+│   ├── scrript.js
+│   ├── toggle.js
 │   └── storage.js
 ├── index.html
 ├── manifest.json
